@@ -18,8 +18,25 @@
 
 #ifdef VIA_ENABLE
 /* VIA configuration. */
-#define DYNAMIC_KEYMAP_LAYER_COUNT 4
-#endif  // VIA_ENABLE
+#    define DYNAMIC_KEYMAP_LAYER_COUNT 4
+
+#    ifdef VIAL_ENABLE
+/** Vial-specific configuration. */
+
+#        define VIAL_KEYBOARD_UID \
+            { 0x6D, 0xA5, 0xCD, 0x8D, 0xC7, 0x3D, 0x7B, 0xA8 }
+#        define VIAL_UNLOCK_COMBO_ROWS \
+            { 0, 5 }
+#        define VIAL_UNLOCK_COMBO_COLS \
+            { 0, 0 }
+
+/** Disable unused vial features. */
+
+// In addition to RGB Matrix effects, VialRGB also provides direct LED control
+// with a script running on your computer.  Remove to reenable.
+#        define VIALRGB_NO_DIRECT
+#    endif  // VIAL_ENABLE
+#endif      // VIA_ENABLE
 
 /* Disable unused features. */
 #define NO_ACTION_ONESHOT
@@ -32,7 +49,7 @@
  *
  * See docs.qmk.fm/using-qmk/software-features/tap_hold#tapping-term
  */
-#define TAPPING_TERM 200
+#    define TAPPING_TERM 200
 #endif  // TAPPING_TERM
 
 /* Charybdis-specific features. */
@@ -41,7 +58,7 @@
 // Enable pointer acceleration, which increases the speed by ~2x for large
 // displacement, while maintaining 1x speed for slow movements.
 // - `CHARYBDIS_POINTER_ACCELERATION_FACTOR`
-#define CHARYBDIS_POINTER_ACCELERATION_ENABLE
+#    define CHARYBDIS_POINTER_ACCELERATION_ENABLE
 
 // Automatically enable the pointer layer when moving the trackball.  See also:
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
@@ -54,20 +71,19 @@
 #ifdef RGB_MATRIX_ENABLE
 // Limit maximum brightness to keep power consumption reasonable, and avoid
 // disconnects.
-#undef RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 64
+#    undef RGB_MATRIX_MAXIMUM_BRIGHTNESS
+#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 64
 
 // Rainbow swirl as startup mode.
-#define ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
-#define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_CYCLE_LEFT_RIGHT
+#    define ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
+#    define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_CYCLE_LEFT_RIGHT
 
 // Slow swirl at startup.
-#define RGB_MATRIX_STARTUP_SPD 32
+#    define RGB_MATRIX_STARTUP_SPD 32
 
 // Startup values.
-#define RGB_MATRIX_STARTUP_HUE 0
-#define RGB_MATRIX_STARTUP_SAT 255
-#define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#define RGB_MATRIX_STARTUP_HSV \
-  RGB_MATRIX_STARTUP_HUE, RGB_MATRIX_STARTUP_SAT, RGB_MATRIX_STARTUP_VAL
+#    define RGB_MATRIX_STARTUP_HUE 0
+#    define RGB_MATRIX_STARTUP_SAT 255
+#    define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
+#    define RGB_MATRIX_STARTUP_HSV RGB_MATRIX_STARTUP_HUE, RGB_MATRIX_STARTUP_SAT, RGB_MATRIX_STARTUP_VAL
 #endif  // RGB_MATRIX_ENABLE

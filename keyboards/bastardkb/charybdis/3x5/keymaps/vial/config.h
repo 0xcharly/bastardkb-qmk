@@ -18,7 +18,24 @@
 
 #ifdef VIA_ENABLE
 /* VIA configuration. */
-#define DYNAMIC_KEYMAP_LAYER_COUNT 4
+#define DYNAMIC_KEYMAP_LAYER_COUNT 7
+
+#ifdef VIAL_ENABLE
+/** Vial configuration. */
+
+#define VIAL_KEYBOARD_UID \
+  { 0x44, 0x9F, 0x26, 0x53, 0xD9, 0x7B, 0x72, 0x4F }
+#define VIAL_UNLOCK_COMBO_ROWS \
+  { 0, 4 }
+#define VIAL_UNLOCK_COMBO_COLS \
+  { 0, 0 }
+
+/** Disable unused vial features. */
+
+// In addition to RGB Matrix effects, VialRGB also provides direct LED control
+// with a script running on your computer.  Remove to reenable.
+#define VIALRGB_NO_DIRECT
+#endif  // VIAL_ENABLE
 #endif  // VIA_ENABLE
 
 /* Disable unused features. */
@@ -35,11 +52,57 @@
 #define TAPPING_TERM 200
 #endif  // TAPPING_TERM
 
+/**
+ * \brief Enable rapid switch from tap to hold.
+ *
+ * Note that a side-effect of this setting is to disable auto-repeat when
+ * pressing key twice, except for one-shot keys.
+ *
+ * See docs.qmk.fm/using-qmk/software-features/tap_hold#tapping-force-hold
+ */
+#define TAPPING_FORCE_HOLD
+
+/*
+ * Tap-or-Hold decision modes.
+ *
+ * Note that the following flags behave differently when combined (ie. when 2 or
+ * more are enabled).
+ *
+ * See bit.ly/tap-or-hold for a visual explanation of the following tap-or-hold
+ * decision modes.
+ */
+
+/**
+ * \brief Faster tap-hold trigger.
+ *
+ * Without `PERMISSIVE_HOLD`, within `TAPPING_TERM`:
+ *   Mod(a)🠗 e🠗 e🠕 Mod(a)🠕 ➞ ae
+ * With `PERMISSIVE_HOLD`, within `TAPPING_TERM`:
+ *   Mod(a)🠗 e🠗 e🠕 Mod(a)🠕 ➞ Mod+e
+ *
+ * See docs.qmk.fm/using-qmk/software-features/tap_hold#permissive-hold
+ */
+#define PERMISSIVE_HOLD
+
+/**
+ * \brief Prevent normal rollover on alphas from accidentally triggering mods.
+ *
+ * Ignores key presses that interrupt a mod-tap.  Must-have for Home Row mod.
+ *
+ * Without `IGNORE_MOD_TAP_INTERRUPT`, within `TAPPING_TERM`:
+ *   Mod(a)🠗 e🠗 Mod(a)🠕 e🠕 ➞ Mod+e
+ * With `IGNORE_MOD_TAP_INTERRUPT`, within `TAPPING_TERM`:
+ *   Mod(a)🠗 e🠗 Mod(a)🠕 e🠕 ➞ ae
+ *
+ * See docs.qmk.fm/using-qmk/software-features/tap_hold#ignore-mod-tap-interrupt
+ */
+#define IGNORE_MOD_TAP_INTERRUPT
+
 /* Charybdis-specific features. */
 
 #ifdef POINTING_DEVICE_ENABLE
 // Enable pointer acceleration, which increases the speed by ~2x for large
-// displacement, while maintaining 1x speed for slow movements.
+// displacement, while maintaining 1x speed for slow movements.  See also:
 // - `CHARYBDIS_POINTER_ACCELERATION_FACTOR`
 #define CHARYBDIS_POINTER_ACCELERATION_ENABLE
 
