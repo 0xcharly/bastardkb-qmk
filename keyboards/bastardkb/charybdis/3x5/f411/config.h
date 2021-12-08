@@ -24,15 +24,15 @@
 
 // Wiring configuration for each half.
 #define MATRIX_ROW_PINS \
-  { B13, A9, B5, B4 }
+  { B15, A2, B8, A8 }
 #define MATRIX_COL_PINS \
-  { B15, B14, B12, B6, B7 }
+  { B0, B1, B2, B3, B4 }
 
 /* Handedness. */
-#define SPLIT_HAND_PIN C14  // High -> left, Low -> right.
+#define SPLIT_HAND_PIN A3  // High -> left, Low -> right.
 
 /* PMW3360 settings. */
-#define PMW3360_CS_PIN B0
+#define PMW3360_CS_PIN B14
 #define PMW3360_CS_MODE 3
 #define PMW3360_CS_DIVISOR 64
 
@@ -43,23 +43,22 @@
 #define WS2812_PWM_CHANNEL 2
 #define WS2812_PWM_PAL_MODE 1
 #define WS2812_EXTERNAL_PULLUP
-#define WS2812_DMA_STREAM STM32_DMA1_STREAM7
+#define WS2812_DMA_STREAM STM32_DMA1_STREAM1
 #define WS2812_DMA_CHANNEL 3
-
-#define DEBUG_LED_PIN C13
+#define WS2812_PWM_TARGET_PERIOD 800000
 
 /* Serial configuration for split keyboard. */
 
-#define SERIAL_USART_FULL_DUPLEX  // Full duplex operation mode.
-#define SERIAL_USART_TX_PIN A2
-#define SERIAL_USART_RX_PIN A3
-#define SERIAL_USART_DRIVER SD2
+//#define SERIAL_USART_FULL_DUPLEX  // Full duplex operation mode.
+#define SERIAL_USART_TX_PIN A9
+//#define SERIAL_USART_RX_PIN A3
+//#define SERIAL_USART_DRIVER SD2
 
 /* SPI config for EEPROM and pmw3360 sensor. */
 #define SPI_DRIVER SPID1
 #define SPI_SCK_PIN A5
 #define SPI_SCK_PAL_MODE 5
-#define SPI_MOSI_PIN A7
+#define SPI_MOSI_PIN B7
 #define SPI_MOSI_PAL_MODE 5
 #define SPI_MISO_PIN A6
 #define SPI_MISO_PAL_MODE 5
