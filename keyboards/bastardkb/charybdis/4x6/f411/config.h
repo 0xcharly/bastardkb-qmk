@@ -19,16 +19,16 @@
 #pragma once
 
 // clang-format off
-#define PRODUCT Charybdis Nano (3x5) BlackPill
+#define PRODUCT Charybdis (4x6) BlackPill
 // clang-format on
 
 /* Key matrix configuration. */
 
 // Wiring configuration for each half.
 #define MATRIX_ROW_PINS \
-  { B15, A2, B8, A8 }
+  { B15, A2, B8, A8, B9 }
 #define MATRIX_COL_PINS \
-  { B0, B1, B2, B3, B4 }
+  { B0, B1, B2, B3, B4, B5 }
 
 /* Handedness. */
 #define SPLIT_HAND_PIN A3  // High -> left, Low -> right.
