@@ -29,7 +29,7 @@
 #define MATRIX_ROW_PINS \
   { B15, A2, B8, A8, B9 }
 #define MATRIX_COL_PINS \
-  { B0, B1, B2, B3, B4, B5 }
+  { B0, B1, B10, B3, B4, B5 }
 
 /* Handedness. */
 #define SPLIT_HAND_PIN A3  // High -> left, Low -> right.
