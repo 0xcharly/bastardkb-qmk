@@ -18,9 +18,9 @@
 
 #include "f411.h"
 
-void matrix_init_sub_kb(void) { setPinInputHigh(A0); }
+void keyboard_pre_init_user(void) { setPinInputHigh(A0); }
 
-void matrix_scan_sub_kb(void) {
+void matrix_scan_user(void) {
   if (!readPin(A0)) {
     reset_keyboard();
   }
