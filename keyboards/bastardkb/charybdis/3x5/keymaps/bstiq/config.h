@@ -17,6 +17,17 @@
  */
 #pragma once
 
+#ifdef VIA_ENABLE
+/* Via/Vial configuration. */
+#define DYNAMIC_KEYMAP_LAYER_COUNT 8
+#ifdef VIAL_ENABLE
+/** Vial-specific configuration. */
+
+#define VIAL_KEYBOARD_UID \
+  { 0x08, 0x7F, 0xDE, 0x7F, 0xFA, 0x71, 0xB7, 0x49 }
+#endif  // VIAL_ENABLE
+#endif  // VIA_ENABLE
+
 /**
  * Configure the global tapping term (default: 200ms).
  * If you have a lot of accidental mod activations, crank up the tapping term.
