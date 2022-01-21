@@ -352,6 +352,6 @@ void matrix_scan_kb(void) {
     if (!readPin(A0)) {
         reset_keyboard();
     }
-    matrix_init_user();
+    matrix_scan_user();
 }
 #endif  // __arm__
