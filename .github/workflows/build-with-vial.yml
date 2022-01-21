@@ -1,0 +1,42 @@
+name: Build Vial firmwares for Charybdis keyboards with Elite-C (ATMEGA32u4)
+on:
+  push:
+    branches:
+      - charybdis-upstream-with-vial
+    paths-ignore:
+      - "**.md"
+
+jobs:
+  build-bastardkb:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        keyboard:
+          - bastardkb/charybdis/3x5
+          - bastardkb/charybdis/4x6
+        keymap:
+          - vial
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+          submodules: true
+
+      - name: Build
+        id: build
+        run: |
+          qmk compile -kb ${{ matrix.keyboard }} -km ${{ matrix.keymap }}
+
+          TARGET="$(echo "${{ matrix.keyboard }}" | sed 's#/#_#g')_${{ matrix.keymap }}"
+          echo ::set-output name=artifact-name::${TARGET}
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: "${{ steps.build.outputs.artifact-name }}"
+          path: |
+            *.hex
+            *.bin
+        continue-on-error: true
